@@ -13,7 +13,8 @@ class Player
     @hand = Hand.new(deck)
   end
 
-  def pass; end
-
-  def add; end
+  def add(deck)
+    @hand.cards << Card.new(deck).value
+    deck.delete_at(card_index)
+  end
 end

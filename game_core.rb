@@ -16,8 +16,9 @@ module GameCore
   def user_turn?
     choise = gets.chomp.to_sym
     return false if choise == :open
+    return true if choise == :pass
 
-    @user.send(choise) #check nil
+    @user.add(@deck)
   end
 
   def dealer_turn; end

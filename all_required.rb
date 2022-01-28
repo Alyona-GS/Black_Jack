@@ -1,3 +1,4 @@
+require_relative 'message_system.rb'
 require_relative 'game_core.rb'
 
 require_relative './Classes/deck.rb'

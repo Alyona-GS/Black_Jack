@@ -2,7 +2,8 @@ class Card
   attr_reader :value
 
   def initialize(deck)
-    card_number = rand(deck.cards.length)
-    @value = deck.cards[card_number - 1]
+    card_index = rand(deck.cards.length) - 1
+    @value = deck.cards[card_index].chr
+    deck.cards.delete_at(card_index)
   end
 end

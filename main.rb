@@ -13,14 +13,14 @@ class BlackJack
   def start
     loop do
       @deck = Deck.new
-      deal_cards
+      deal_cards(deck)
       start_game
       return unless answer?
     end
   end
 
-  def deal_cards
-    ObjectSpace.each_object(Player) { |p| p.deal(self.deck) }
+  def deal_cards(deck)
+    ObjectSpace.each_object(Player) { |p| p.deal(deck) }
   end
 
   def answer?
