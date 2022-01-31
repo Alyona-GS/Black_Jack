@@ -1,5 +1,5 @@
 module GameCore
-  MAX_CARDS = 3
+  include MessageSystem
 
   def start_game
     loop do
@@ -16,8 +16,8 @@ module GameCore
   end
 
   def hands_full?
-    puts @dealer.hand.cards.length
-    @dealer.hand.cards.length == MAX_CARDS && @user.hand.cards.length == MAX_CARDS
+    full = self.players.map { |p| p.hand.cards.length == MAX_CARDS }
+    full[0] && full[1]
   end
 
   def user_turn(choise)
@@ -25,9 +25,11 @@ module GameCore
   end
 
   def dealer_turn
-    return if @dealer.hand.cards.length == MAX_CARDS
-    @dealer.add(self.deck) if @dealer.hand.sum < 17
+    return if self.players[0].hand.cards.length == MAX_CARDS
+    self.players[0].add(self.deck) if self.players[0].hand.sum < 17
   end
 
-  def cards_out; end
+  def cards_out    
+    #self.players.each {}
+  end
 end

@@ -4,10 +4,10 @@ class BlackJack
   include GameCore
 
   attr_accessor :deck
+  attr_reader   :players
 
   def initialize
-    @user = User.new
-    @dealer = Dealer.new
+    @players = [Dealer.new, User.new]
   end
 
   def start
@@ -20,7 +20,7 @@ class BlackJack
   end
 
   def deal_cards(deck)
-    ObjectSpace.each_object(Player) { |p| p.deal(deck) }
+    self.players.each { |p| p.deal(deck) }
   end
 
   def answer?

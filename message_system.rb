@@ -4,6 +4,7 @@ module MessageSystem
   BET = 10
 
   INIT_CARDS = 2
+  MAX_CARDS = 3
   PICT_VALUE = 10
   BIG_ACE = 11
 

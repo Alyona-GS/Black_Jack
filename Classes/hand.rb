@@ -5,7 +5,6 @@ class Hand
 
   def initialize(deck)
     @cards = INIT_CARDS.times.map{ Card.new(deck).value }
-    sum
   end
 
   def sum
