@@ -1,6 +1,5 @@
 class Player
-  INIT_MONEY = 100
-  BET = 10
+  include MessageSystem
 
   attr_reader :hand
 
@@ -15,6 +14,5 @@ class Player
 
   def add(deck)
     @hand.cards << Card.new(deck).value
-    deck.delete_at(card_index)
   end
 end

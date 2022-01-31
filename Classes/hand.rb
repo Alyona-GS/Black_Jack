@@ -5,12 +5,13 @@ class Hand
 
   def initialize(deck)
     @cards = INIT_CARDS.times.map{ Card.new(deck).value }
-    summarize
+    sum
   end
 
-  def summarize
+  def sum
     pict_sum = count(["J", "Q", "K"]) * PICT_VALUE
     sum = numb_sum + pict_sum
+
     aces_sum.add(sum).reject { |sum| sum > 21 }.max # check nil
   end
 

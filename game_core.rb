@@ -3,24 +3,31 @@ module GameCore
 
   def start_game
     loop do
-      break if hands_full? || !user_turn?
+      break if hands_full?
+      choise = gets.chomp.to_sym
+      break if choise == :open
+      user_turn(choise)
       dealer_turn
     end
     cards_out
+  rescue StandardError => e
+    puts e.message
+    retry
   end
 
   def hands_full?
-    @dealer.hand.cards.length == MAX_CARDS
+    puts @dealer.hand.cards.length
+    @dealer.hand.cards.length == MAX_CARDS && @user.hand.cards.length == MAX_CARDS
   end
 
-  def user_turn?
-    choise = gets.chomp.to_sym
-    return false if choise == :open
-    return true if choise == :pass
-
-    @user.add(@deck)
+  def user_turn(choise)
+    @user.add(self.deck) if choise == :add
   end
 
-  def dealer_turn; end
+  def dealer_turn
+    return if @dealer.hand.cards.length == MAX_CARDS
+    @dealer.add(self.deck) if @dealer.hand.sum < 17
+  end
+
   def cards_out; end
 end
