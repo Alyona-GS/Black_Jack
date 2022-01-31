@@ -2,6 +2,7 @@ module GameCore
   include MessageSystem
 
   def start_game
+    self.players.each { |p| p.deal(self.deck) }
     loop do
       break if hands_full?
       choise = gets.chomp.to_sym
@@ -33,7 +34,7 @@ module GameCore
     scores = self.players.map { |p| p.hand.sum }
     best_score = scores.compact.max
     if scores.count(best_score) > 1
-      print "Draw!"
+      puts "Draw!"
       self.players.each { |p| p.money += BET }
       return
     end
