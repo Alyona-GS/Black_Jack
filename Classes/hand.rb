@@ -11,7 +11,7 @@ class Hand
     pict_sum = count(["J", "Q", "K"]) * PICT_VALUE
     sum = numb_sum + pict_sum
 
-    aces_sum.add(sum).reject { |sum| sum > 21 }.max # check nil
+    aces_sum.add(sum).reject { |sum| sum > MAX_SCORE }.max
   end
 
   private

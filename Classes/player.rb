@@ -1,9 +1,12 @@
 class Player
   include MessageSystem
 
-  attr_reader :hand
+  attr_accessor :money
+  attr_reader   :name,
+                :hand
 
-  def initialize
+  def initialize(name)
+    @name = name
     @money = INIT_MONEY
   end
 

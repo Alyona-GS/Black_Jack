@@ -17,19 +17,28 @@ module GameCore
 
   def hands_full?
     full = self.players.map { |p| p.hand.cards.length == MAX_CARDS }
-    full[0] && full[1]
+    full.first && full[1]
   end
 
   def user_turn(choise)
-    @user.add(self.deck) if choise == :add
+    self.players[1].add(self.deck) if choise == :add
   end
 
   def dealer_turn
-    return if self.players[0].hand.cards.length == MAX_CARDS
-    self.players[0].add(self.deck) if self.players[0].hand.sum < 17
+    return if self.players.first.hand.cards.length == MAX_CARDS
+    self.players.first.add(self.deck) if self.players.first.hand.sum < 17
   end
 
   def cards_out    
-    #self.players.each {}
+    scores = self.players.map { |p| p.hand.sum }
+    best_score = scores.compact.max
+    if scores.count(best_score) > 1
+      print "Draw!"
+      self.players.each { |p| p.money += BET }
+      return
+    end
+    winner = players[scores.index(best_score)]
+    winner.money += BET * self.players.length
+    puts "Winner: #{winner.name}"
   end
 end

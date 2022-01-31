@@ -7,7 +7,7 @@ class BlackJack
   attr_reader   :players
 
   def initialize
-    @players = [Dealer.new, User.new]
+    @players = [Dealer.new, User.new("you")]
   end
 
   def start
