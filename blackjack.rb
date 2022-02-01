@@ -1,6 +1,7 @@
 class BlackJack
   include GameCore,
-          MessageSystem
+          MessageSystem,
+          CountSystem
 
   attr_accessor :deck
   attr_reader   :players

@@ -4,7 +4,9 @@ class Dealer < Player
   end
 
   def print_cards
-    puts " | DEALER CARDS: **"
+    print " | DEALER CARDS: "
+    self.hand.cards.length.times { print "*" }
+    print "\n"
   end
 
   def print_open_cards

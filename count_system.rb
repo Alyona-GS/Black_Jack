@@ -6,7 +6,7 @@ module CountSystem
   def count_points  
     cards_out  
     scores     = self.players.map { |player| player.hand.sum }
-    best_score = scores.compact.max
+    best_score = scores.reject { |sum| sum > MAX_SCORE }.max
     scores.count(best_score) > 1 ? draw : winner(scores, best_score)
   end
 

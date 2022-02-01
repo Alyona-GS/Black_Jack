@@ -12,7 +12,10 @@ class Hand
     pict_sum = find(["J", "Q", "K"]).count * PICT_VALUE
     sum      = numb_sum + pict_sum
 
-    aces_sum.add(sum).reject { |sum| sum > MAX_SCORE }.max
+    sum_arr  = aces_sum.add(sum)
+    return sum_arr.min if sum_arr.min > MAX_SCORE
+    
+    sum_arr.select { |sum| sum <= MAX_SCORE }.max
   end
 
   def output
