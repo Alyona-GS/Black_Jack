@@ -4,7 +4,6 @@ module GameCore
   private
 
   def start_game
-    self.players.reverse_each(&:print_cards)
     loop do
       print "Action: "
       choise = gets.chomp.to_sym
@@ -12,8 +11,10 @@ module GameCore
 
       break                            if choise == :open
       self.players.last.add(self.deck) if choise == :add
+      self.players.reverse_each(&:print_cards)
 
       dealer_turn
+      sleep(1)
       self.players.reverse_each(&:print_cards)
       break if hands_full?
     end

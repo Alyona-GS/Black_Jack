@@ -14,7 +14,7 @@ class Hand
 
     sum_arr  = aces_sum.add(sum)
     return sum_arr.min if sum_arr.min > MAX_SCORE
-    
+
     sum_arr.select { |sum| sum <= MAX_SCORE }.max
   end
 
@@ -30,7 +30,7 @@ class Hand
   end
 
   def find(arr)
-    values = self.cards.map { |card| card.value.chr }
+    values = self.cards.map { |card| card.value.chop }
     values.select { |value| arr.include?(value) }
   end
 end

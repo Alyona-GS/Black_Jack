@@ -7,7 +7,14 @@ module CountSystem
     cards_out  
     scores     = self.players.map { |player| player.hand.sum }
     best_score = scores.reject { |sum| sum > MAX_SCORE }.max
+    
+    return both_lost if best_score.nil?    
     scores.count(best_score) > 1 ? draw : winner(scores, best_score)
+  end
+
+  def both_lost
+    puts "Both lost!"
+    self.players.each { |player| player.money += BET }
   end
 
   def draw
@@ -23,6 +30,7 @@ module CountSystem
 
   def cards_out
     puts "CARDS OUT!"
+    sleep(1.5)
     self.players.last.print_cards
     self.players.first.print_open_cards
   end
