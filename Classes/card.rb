@@ -3,7 +3,7 @@ class Card
 
   def initialize(deck)
     card_index = rand(deck.cards.length) - 1
-    @value = deck.cards[card_index].chr
+    @value = deck.cards[card_index]
     deck.cards.delete_at(card_index)
   end
 end

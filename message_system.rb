@@ -12,10 +12,10 @@ module MessageSystem
   BIG_ACE    = 11
 
   EXCEPT = {
-    over:          "You've lost!",
     no_money:      "You don't have any money left",
     deal_no_money: "Dealer don't have money anymore",
-    limit:         "You can't have more then #{MAX_CARDS} cards" }
+    limit:         "You can't have more then #{MAX_CARDS} cards",
+    no_action:     "You should print 'pass', 'open' or 'add'" }
 
   def mess_continue(player)
     puts  "=====================================",

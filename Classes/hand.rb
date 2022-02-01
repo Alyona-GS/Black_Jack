@@ -4,35 +4,31 @@ class Hand
   attr_reader :cards
 
   def initialize(deck)
-    @cards = INIT_CARDS.times.map{ Card.new(deck).value }
+    @cards = INIT_CARDS.times.map{ Card.new(deck) }
   end
 
   def sum
-    pict_sum = count(["J", "Q", "K"]) * PICT_VALUE
-    sum = numb_sum + pict_sum
+    numb_sum = find('2'..'10').map(&:to_i).sum
+    pict_sum = find(["J", "Q", "K"]).count * PICT_VALUE
+    sum      = numb_sum + pict_sum
 
     aces_sum.add(sum).reject { |sum| sum > MAX_SCORE }.max
+  end
+
+  def output
+    self.cards.each { |card| print "#{card.value} " }
   end
 
   private
 
   def aces_sum
-    aces = count("A")
+    aces = find("A").count
     (0..aces).to_a.map { |i| i * BIG_ACE + (aces - i) }
   end
 
-  def numb_sum
-    self.cards.select(&:is_integer?).map(&:to_i).sum
-  end
-
-  def count(values)
-    self.cards.select { |card| values.include?(card) }.count
-  end
-end
-
-class String
-  def is_integer?
-    self == self.to_i.to_s
+  def find(arr)
+    values = self.cards.map { |card| card.value.chr }
+    values.select { |value| arr.include?(value) }
   end
 end
 

@@ -14,8 +14,10 @@ class BlackJack
       raise EXCEPT[:no_money]      if self.players.last.money.zero?
       raise EXCEPT[:deal_no_money] if self.players.first.money.zero?
 
-      @deck = Deck.new      
+      @deck = Deck.new
+      self.players.each { |player| player.deal(deck) }
       start_game
+      count_points
       return unless continue?
     end
   rescue StandardError => e

@@ -2,8 +2,7 @@ class Player
   include MessageSystem
 
   attr_accessor :money
-  attr_reader   :name,
-                :hand
+  attr_reader   :name, :hand
 
   def initialize(name)
     @name = name
@@ -16,6 +15,11 @@ class Player
   end
 
   def add(deck)
-    @hand.cards << Card.new(deck).value
+    @hand.cards << Card.new(deck)
+  end
+
+  def print_cards
+    self.hand.output
+    print "sum #{self.hand.sum}"
   end
 end
